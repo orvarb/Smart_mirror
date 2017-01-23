@@ -34,7 +34,8 @@ void draw() {
   displayTime();
   days();
   months();
-
+  gasPrice();
+  
 }
 
 
@@ -70,6 +71,7 @@ void weather() {
   boolean weathercheck11 = myconditions.contains("Light snow");
   boolean weathercheck12 = myconditions.contains("Freezing drizzle");
   boolean weathercheck13 = myconditions.contains("Light freezing drizzle");
+  boolean weathercheck14 = myconditions.contains("Drizzle/rain");
 
   //TEST FOR CONDITION AND DISPLAY APPROPRIATE ICON
   if (weathercheck == true) { image(Cloudy, width-170, 25); }
@@ -85,6 +87,7 @@ void weather() {
   if (weathercheck11 == true) { image(Snow, width-170, 25); }
   if (weathercheck12 == true) { image(Lightsnow, width-170, 25); }
   if (weathercheck13 == true) { image(Lightsnow, width-170, 25); }
+  if (weathercheck14 == true) { image(Rain, width-170, 25); }
   
   //current temp
   boolean temptestminus10 = myconditions.contains("temp:'-10'");
@@ -180,11 +183,33 @@ void weather() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void currency() {
-  textSize(p);
-  text("USD       115,06   +1,10%", rightPositions, 400);
-  text("EUR       123,32   +0,37%", rightPositions, 430);
-  text("GBP       142,88   +0,95%", rightPositions, 460);
-  text("DKK       16,182   +0,37%", rightPositions, 490);
+  
+JSONObject json = loadJSONObject("http://apis.is/currency/lb");
+JSONArray results = json.getJSONArray("results");
+JSONObject EURLocation = results.getJSONObject(0); 
+JSONObject USDLocation = results.getJSONObject(1); 
+JSONObject GBPLocation = results.getJSONObject(2); 
+JSONObject DKKLocation = results.getJSONObject(6); 
+
+float EUR = EURLocation.getFloat("value");
+float EURChange = EURLocation.getFloat("changeCur");
+float USD = USDLocation.getFloat("value");
+float USDChange = USDLocation.getFloat("changeCur");
+float GBP = GBPLocation.getFloat("value");
+float GBPChange = GBPLocation.getFloat("changeCur");
+float DKK = DKKLocation.getFloat("value");
+float DKKChange = DKKLocation.getFloat("changeCur");
+
+println("EUR: " + nf(EUR, 3, 2) + "    " + nf(EURChange, 1, 2));
+println("USD: " + nf(USD, 3, 2) + "   " + nf(USDChange, 1, 2));
+println("GBP: " + nf(GBP, 3, 2) + "    " + nf(GBPChange, 1, 2));
+println("DKK:  " + nf(DKK, 2, 2) + "    " + nf(DKKChange, 1, 2));
+
+textSize(p);
+text("USD:     " + nf(USD, 3, 2) + "    " + nf(USDChange, 1, 2) + "%", rightPositions, 430);
+text("GBP:     " + nf(GBP, 3, 2) + "     " + nf(GBPChange, 1, 2) + "%", rightPositions, 460);
+text("EUR:     " + nf(EUR, 3, 2) + "     " + nf(EURChange, 1, 2) + "%", rightPositions, 400);
+text("DKK:       " + nf(DKK, 2, 2) + "      " + nf(DKKChange, 1, 2) + "%", rightPositions, 490);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -200,9 +225,22 @@ void stocks() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void gasPrice() {
-  
-  
-  
+
+JSONObject json = loadJSONObject("http://apis.is/petrol?");
+JSONArray results = json.getJSONArray("results");
+JSONObject eachLoctiton = results.getJSONObject(9); // Nr 9 er Kopavogsbraut
+
+float bensin95 = eachLoctiton.getFloat("bensin95");
+float bensin95_discount = eachLoctiton.getFloat("bensin95_discount");
+float diesel = eachLoctiton.getFloat("diesel");
+float diesel_discount = eachLoctiton.getFloat("diesel_discount");
+String name = eachLoctiton.getString("name");
+
+println(name + ", " + bensin95 + ", " + diesel);
+
+textSize(p);
+text("Bensín '95    " + bensin95 + " / " + bensin95_discount, rightPositions, 730);
+text("Dísel             " + diesel + " / " + diesel_discount, rightPositions, 760);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -213,11 +251,11 @@ textFont(font, 150);
 int timeheight = 150;
     
   if(hour() <= 12 && hour() > 0 && minute() > 9){
-    text("0" + hour()+":"+minute(),leftPositions,timeheight);
+    text(hour()+":"+minute(),leftPositions,timeheight);
   }
   
   if(hour() <= 12 && hour() > 0 && minute() <= 9){
-    text("0" + hour()+":"+"0"+minute(),leftPositions,timeheight);
+    text(hour()+":"+"0"+minute(),leftPositions,timeheight);
   }
   
   if(hour() > 12 && minute() > 9){
@@ -253,9 +291,9 @@ void days() {
   }
   if (intDayOfWeek == 2) {
     today = "Mánudagur";
-    tomorrow = "Þrið";
-    dayAfterTomorrow = "Mið";
-    dayAfterTheDayAfterTomorrow = "Fimmt";
+    tomorrow = "Þrið        7° / 2°";
+    dayAfterTomorrow = "Mið         6° / 2°";
+    dayAfterTheDayAfterTomorrow = "Fimmt     6° / 0°";
   }
   if (intDayOfWeek == 3) {
     today = "Þriðjudagur";

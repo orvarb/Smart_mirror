@@ -1,0 +1,33 @@
+{
+	"results":
+	[
+		{
+			"bensin95":201.4,
+			"bensin95_discount":198.4,
+			"company":"Atlantsolía",
+			"diesel":194.2,
+			"diesel_discount":191.2,
+			"geo": 
+			{
+				"lat":65.69913,
+				"lon":-18.135231
+			},
+			"key":"ao_000",
+			"name":"Baldursnes Akureyri"
+		},
+		{
+			"bensin95":201.4,
+			"bensin95_discount":198.4,
+			"company":"Atlantsolía",
+			"diesel":194.2,
+			"diesel_discount":191.2,
+			"geo":
+			{
+				"lat":65.687807,
+				"lon":-18.100104
+			},
+			"key":"ao_001",
+			"name":"Glerártorg Akureyri"
+		}
+	]
+}
