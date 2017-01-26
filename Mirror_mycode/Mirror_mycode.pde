@@ -35,6 +35,7 @@ void draw() {
   days();
   months();
   gasPrice();
+  weatherNextThreeDays();
   
 }
 
@@ -182,34 +183,103 @@ void weather() {
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void weatherNextThreeDays() { 
+  
+JSONObject json = loadJSONObject("http://apis.is/weather/forecasts/is?stations=1");
+JSONArray results = json.getJSONArray("results");
+JSONObject temperatureAtNoon = results.getJSONObject(0); 
+JSONArray forecast = temperatureAtNoon.getJSONArray("forecast");
+
+// Find temperature for noon next day
+JSONObject temperature1 = forecast.getJSONObject(12);
+String temp1 = temperature1.getString("T");
+String tempTime1 = temperature1.getString("ftime");
+String description1 = temperature1.getString("W");
+println("Time: " + tempTime1);
+println("Temperature: " + temp1);
+println("Description: " + description1);
+
+// Find temperature for noon day after tomorrow
+JSONObject temperature2 = forecast.getJSONObject(36);
+String temp2 = temperature2.getString("T");
+String tempTime2 = temperature2.getString("ftime");
+String description2 = temperature2.getString("W");
+println("Time: " + tempTime2);
+println("Temperature: " + temp2);
+println("Description: " + description2);
+
+// Find temperature for noon day after tomorrow
+JSONObject temperature3 = forecast.getJSONObject(60);
+String temp3 = temperature3.getString("T");
+String tempTime3 = temperature3.getString("ftime");
+String description3 = temperature3.getString("W");
+println("Time: " + tempTime3);
+println("Temperature: " + temp3);
+println("Description: " + description3);
+
+textSize(30);
+text(" " + temp1 + "°", rightPositions+140, 220);
+text(" " + temp2 + "°", rightPositions+140, 260);
+text(temp3 + "°", rightPositions+140, 300);
+  
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void currency() {
   
+String EURChange2points = "";
+String USDChange2points = "";
+String GBPChange2points = "";
+String DKKChange2points = "";
+String GVTChange2points = "";
+
 JSONObject json = loadJSONObject("http://apis.is/currency/lb");
 JSONArray results = json.getJSONArray("results");
 JSONObject EURLocation = results.getJSONObject(0); 
 JSONObject USDLocation = results.getJSONObject(1); 
 JSONObject GBPLocation = results.getJSONObject(2); 
 JSONObject DKKLocation = results.getJSONObject(6); 
+JSONObject GVTLocation = results.getJSONObject(17);
+
 
 float EUR = EURLocation.getFloat("value");
 float EURChange = EURLocation.getFloat("changeCur");
+if (EURChange > 0) { EURChange2points = ("+" + nf(EURChange, 1, 2) + "%"); }
+else if (EURChange < 0) { EURChange2points = ("-" + EURChange + "%"); }
+
 float USD = USDLocation.getFloat("value");
 float USDChange = USDLocation.getFloat("changeCur");
+if (USDChange > 0) { USDChange2points = ("+" + nf(USDChange, 1, 2) + "%"); }
+else if (USDChange < 0) { USDChange2points = ("-" + USDChange + "%"); }
+
 float GBP = GBPLocation.getFloat("value");
 float GBPChange = GBPLocation.getFloat("changeCur");
+if (GBPChange > 0) { GBPChange2points = ("+" + nf(GBPChange, 1, 2) + "%"); }
+else if (GBPChange < 0) { GBPChange2points = ("-" + GBPChange + "%"); }
+
 float DKK = DKKLocation.getFloat("value");
 float DKKChange = DKKLocation.getFloat("changeCur");
+if (DKKChange > 0) { DKKChange2points = ("+" + nf(DKKChange, 1, 2) + "%"); }
+else if (DKKChange < 0) { DKKChange2points = ("-" + DKKChange + "%"); }
 
-println("EUR: " + nf(EUR, 3, 2) + "    " + nf(EURChange, 1, 2));
-println("USD: " + nf(USD, 3, 2) + "   " + nf(USDChange, 1, 2));
-println("GBP: " + nf(GBP, 3, 2) + "    " + nf(GBPChange, 1, 2));
-println("DKK:  " + nf(DKK, 2, 2) + "    " + nf(DKKChange, 1, 2));
+float GVT = GVTLocation.getFloat("value");
+float GVTChange = DKKLocation.getFloat("changeCur");
+if (GVTChange > 0) { GVTChange2points = ("+" + nf(GVTChange, 1, 2) + "%"); }
+else if (GVTChange < 0) { GVTChange2points = ("-" + GVTChange + "%"); }
+
+
+println("EUR: " + nf(EUR, 3, 2) + "   " + EURChange2points);
+println("USD: " + nf(USD, 3, 2) + "   " + USDChange2points);
+println("GBP: " + nf(GBP, 3, 2) + "   " + GBPChange2points);
+println("DKK:  " + nf(DKK, 2, 2) + "   " + DKKChange2points);
+println("GVT: " + nf(GVT, 3, 2) + "   " + GVTChange2points);
+
 
 textSize(p);
-text("USD:     " + nf(USD, 3, 2) + "    " + nf(USDChange, 1, 2) + "%", rightPositions, 430);
-text("GBP:     " + nf(GBP, 3, 2) + "     " + nf(GBPChange, 1, 2) + "%", rightPositions, 460);
-text("EUR:     " + nf(EUR, 3, 2) + "     " + nf(EURChange, 1, 2) + "%", rightPositions, 400);
-text("DKK:       " + nf(DKK, 2, 2) + "      " + nf(DKKChange, 1, 2) + "%", rightPositions, 490);
+text("GVT:     " + nf(GVT, 2, 2) + "      " + GVTChange2points, rightPositions, 380);
+text("USD:     " + nf(USD, 3, 2) + "      " + USDChange2points, rightPositions, 410);
+text("GBP:     " + nf(GBP, 3, 2) + "      " + GBPChange2points, rightPositions, 440);
+text("EUR:     " + nf(EUR, 3, 2) + "      " + EURChange2points, rightPositions, 470);
+text("DKK:       " + nf(DKK, 2, 2) + "      " + DKKChange2points, rightPositions, 500);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -221,6 +291,18 @@ void stocks() {
   text("FB           127,55   -0,37%", rightPositions, 640);
   text("GOOG      802,18   -3,90%", rightPositions, 670);
   
+  float x = width;
+  int index = 0;
+  String[] stocks = { "AAPL       119,78   -0,18%", "TWTR        16,79   -1,87%", "TSLA       243,76   +5,40%" };
+  
+  text(stocks[index], x, 10);
+  x = x - 3;
+  
+  float w = textWidth(stocks[index]);
+  if (x < -w) {
+    x = width; 
+    index = (index + 1) % stocks.length;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -291,9 +373,9 @@ void days() {
   }
   if (intDayOfWeek == 2) {
     today = "Mánudagur";
-    tomorrow = "Þrið        7° / 2°";
-    dayAfterTomorrow = "Mið         6° / 2°";
-    dayAfterTheDayAfterTomorrow = "Fimmt     6° / 0°";
+    tomorrow = "Þrið   ";
+    dayAfterTomorrow = "Mið   ";
+    dayAfterTheDayAfterTomorrow = "Fimmt   ";
   }
   if (intDayOfWeek == 3) {
     today = "Þriðjudagur";
@@ -338,23 +420,23 @@ void days() {
   
   textSize(25);
    if(today == "Mánudagur"){
-     text("Rækt kl 09",leftPositions,400);
+     text("Rækt kl 09 - FÆTUR",leftPositions,400);
      text("Vökva blómin í dag",leftPositions,430);
    }
    if(today == "Þriðjudagur"){
-     text("Rækt kl 09",leftPositions,400);
+     text("Rækt kl 09 - HENDUR ",leftPositions,400);
    }
    if(today == "Miðvikudagur"){
-     text("Rækt kl 09",leftPositions,400);
+     text("Rækt kl 09 - BAK",leftPositions,400);
      text("",leftPositions,430);
    }
    if(today == "Fimmtudagur"){
-     text("Rækt kl 09",leftPositions,400);
+     text("Rækt kl 09 - BRJÓST",leftPositions,400);
      text("Pay Rent Today",leftPositions,430);
      text("Launch kl 13:00 ",leftPositions,460);
    }
    if(today == "Föstudagur"){
-     text("Rækt kl 09",leftPositions,400);
+     text("Rækt kl 09 - FÆTUR",leftPositions,400);
      text("Vökva blómin",leftPositions,430);
      text("Launch kl 13:00 ",leftPositions,460);
    }

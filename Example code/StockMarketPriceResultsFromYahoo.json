@@ -1,0 +1,90 @@
+// This query returns stock market price from http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22YHOO%22%2C%22AAPL%22%2C%22GOOG%22%2C%22MSFT%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json
+{
+	"query":
+	{
+		"count":4,
+		"created":"2017-01-23T13:28:52Z",
+		"lang":"en-US",
+		"results":
+		{
+			"quote":
+			[
+				{
+					"symbol":"YHOO",
+					"Ask":"41.90",
+					"AverageDailyVolume":"9343520",
+					"Bid":"41.10",
+					"AskRealtime":null,
+					"BidRealtime":null,
+					"BookValue":"36.54",
+					"Change_PercentChange":"-0.04 - -0.10%",
+					"Change":"-0.04",
+					"Commission":null,
+					"Currency":"USD",
+					"ChangeRealtime":null,
+					"AfterHoursChangeRealtime":null,
+					"DividendShare":null,
+					"LastTradeDate":"1/20/2017",
+					"TradeDate":null,
+					"EarningsShare":"-5.08",
+					"ErrorIndicationreturnedforsymbolchangedinvalid":null,
+					"EPSEstimateCurrentYear":"0.58",
+					"EPSEstimateNextYear":"0.65",
+					"EPSEstimateNextQuarter":"0.14",
+					"DaysLow":"41.87",
+					"DaysHigh":"42.53",
+					"YearLow":"26.15",
+					"YearHigh":"44.92",
+					"HoldingsGainPercent":null,
+					"AnnualizedGain":null,
+					"HoldingsGain":null,
+					"HoldingsGainPercentRealtime":null,
+					"HoldingsGainRealtime":null,
+					"MoreInfo":null,
+					"OrderBookRealtime":null,
+					"MarketCapitalization":"40.12B",
+					"MarketCapRealtime":null,
+					"EBITDA":"90.38M",
+					"ChangeFromYearLow":"15.90",
+					"PercentChangeFromYearLow":"+60.80%",
+					"LastTradeRealtimeWithTime":null,
+					"ChangePercentRealtime":null,
+					"ChangeFromYearHigh":"-2.87",
+					"PercebtChangeFromYearHigh":"-6.39%",
+					"LastTradeWithTime":"4:00pm - <b>42.05</b>",
+					"LastTradePriceOnly":"42.05",
+					"HighLimit":null,
+					"LowLimit":null,
+					"DaysRange":"41.87 - 42.53",
+					"DaysRangeRealtime":null,
+					"FiftydayMovingAverage":"40.42",
+					"TwoHundreddayMovingAverage":"41.08",
+					"ChangeFromTwoHundreddayMovingAverage":"0.97",
+					"PercentChangeFromTwoHundreddayMovingAverage":"+2.37%",
+					"ChangeFromFiftydayMovingAverage":"1.63",
+					"PercentChangeFromFiftydayMovingAverage":"+4.04%","Name":"Yahoo! Inc.","Notes":null,"Open":"42.33","PreviousClose":"42.09","PricePaid":null,"ChangeinPercent":"-0.10%","PriceSales":"8.07","PriceBook":"1.15","ExDividendDate":null,"PERatio":null,"DividendPayDate":null,"PERatioRealtime":null,"PEGRatio":"-100.79","PriceEPSEstimateCurrentYear":"72.50","PriceEPSEstimateNextYear":"64.69","Symbol":"YHOO","SharesOwned":null,"ShortRatio":"4.61","LastTradeTime":"4:00pm","TickerTrend":null,"OneyrTargetPrice":"45.55","Volume":"5511730","HoldingsValue":null,"HoldingsValueRealtime":null,"YearRange":"26.15 - 44.92","DaysValueChange":null,"DaysValueChangeRealtime":null,"StockExchange":"NMS","DividendYield":null,"PercentChange":"-0.10%"
+				},
+				{
+					"symbol":"AAPL",
+					"Ask":"119.88",
+					"AverageDailyVolume":"31411400","Bid":"119.70","AskRealtime":null,"BidRealtime":null,"BookValue":"24.03","Change_PercentChange":"+0.22 - +0.18%","Change":"+0.22","Commission":null,"Currency":"USD","ChangeRealtime":null,"AfterHoursChangeRealtime":null,"DividendShare":"2.28","LastTradeDate":"1/20/2017","TradeDate":null,"EarningsShare":"8.31","ErrorIndicationreturnedforsymbolchangedinvalid":null,"EPSEstimateCurrentYear":"8.95","EPSEstimateNextYear":"10.12","EPSEstimateNextQuarter":"2.11","DaysLow":"119.73","DaysHigh":"120.45","YearLow":"89.47","YearHigh":"120.50","HoldingsGainPercent":null,"AnnualizedGain":null,"HoldingsGain":null,"HoldingsGainPercentRealtime":null,"HoldingsGainRealtime":null,"MoreInfo":null,"OrderBookRealtime":null,"MarketCapitalization":"639.88B","MarketCapRealtime":null,"EBITDA":"70.53B","ChangeFromYearLow":"30.53","PercentChangeFromYearLow":"+34.12%","LastTradeRealtimeWithTime":null,"ChangePercentRealtime":null,"ChangeFromYearHigh":"-0.50","PercebtChangeFromYearHigh":"-0.41%","LastTradeWithTime":"4:00pm - <b>120.00</b>","LastTradePriceOnly":"120.00","HighLimit":null,"LowLimit":null,"DaysRange":"119.73 - 120.45","DaysRangeRealtime":null,"FiftydayMovingAverage":"116.07","TwoHundreddayMovingAverage":"110.48","ChangeFromTwoHundreddayMovingAverage":"9.52","PercentChangeFromTwoHundreddayMovingAverage":"+8.62%","ChangeFromFiftydayMovingAverage":"3.93","PercentChangeFromFiftydayMovingAverage":"+3.39%","Name":"Apple Inc.","Notes":null,"Open":"120.45","PreviousClose":"119.78","PricePaid":null,"ChangeinPercent":"+0.18%","PriceSales":"2.96","PriceBook":"4.98","ExDividendDate":"11/3/2016","PERatio":"14.44","DividendPayDate":"11/10/2016","PERatioRealtime":null,"PEGRatio":"0.97","PriceEPSEstimateCurrentYear":"13.41","PriceEPSEstimateNextYear":"11.86","Symbol":"AAPL","SharesOwned":null,"ShortRatio":"1.62","LastTradeTime":"4:00pm","TickerTrend":null,"OneyrTargetPrice":"133.45","Volume":"32600554","HoldingsValue":null,"HoldingsValueRealtime":null,"YearRange":"89.47 - 120.50","DaysValueChange":null,"DaysValueChangeRealtime":null,"StockExchange":"NMS","DividendYield":"1.90","PercentChange":"+0.18%"},{"symbol":"GOOG","Ask":"814.00","AverageDailyVolume":"1730120","Bid":"800.00","AskRealtime":null,"BidRealtime":null,"BookValue":"194.60","Change_PercentChange":"+2.85 - +0.35%","Change":"+2.85","Commission":null,"Currency":"USD","ChangeRealtime":null,"AfterHoursChangeRealtime":null,"DividendShare":null,"LastTradeDate":"1/20/2017","TradeDate":null,"EarningsShare":"27.32","ErrorIndicationreturnedforsymbolchangedinvalid":null,"EPSEstimateCurrentYear":"34.45","EPSEstimateNextYear":"40.97","EPSEstimateNextQuarter":"9.34","DaysLow":"801.69","DaysHigh":"806.91","YearLow":"663.06","YearHigh":"816.68","HoldingsGainPercent":null,"AnnualizedGain":null,"HoldingsGain":null,"HoldingsGainPercentRealtime":null,"HoldingsGainRealtime":null,"MoreInfo":null,"OrderBookRealtime":null,"MarketCapitalization":"554.85B","MarketCapRealtime":null,"EBITDA":"28.29B","ChangeFromYearLow":"141.96","PercentChangeFromYearLow":"+21.41%","LastTradeRealtimeWithTime":null,"ChangePercentRealtime":null,"ChangeFromYearHigh":"-11.66","PercebtChangeFromYearHigh":"-1.43%","LastTradeWithTime":"4:00pm - <b>805.02</b>","LastTradePriceOnly":"805.02","HighLimit":null,"LowLimit":null,"DaysRange":"801.69 - 806.91","DaysRangeRealtime":null,"FiftydayMovingAverage":"790.98","TwoHundreddayMovingAverage":"772.75","ChangeFromTwoHundreddayMovingAverage":"32.27","PercentChangeFromTwoHundreddayMovingAverage":"+4.18%","ChangeFromFiftydayMovingAverage":"14.04","PercentChangeFromFiftydayMovingAverage":"+1.78%","Name":"Alphabet Inc.","Notes":null,"Open":"806.91","PreviousClose":"802.17","PricePaid":null,"ChangeinPercent":"+0.35%","PriceSales":"6.46","PriceBook":"4.12","ExDividendDate":null,"PERatio":"29.46","DividendPayDate":null,"PERatioRealtime":null,"PEGRatio":"1.25","PriceEPSEstimateCurrentYear":"23.37","PriceEPSEstimateNextYear":"19.65","Symbol":"GOOG","SharesOwned":null,"ShortRatio":"1.46","LastTradeTime":"4:00pm","TickerTrend":null,"OneyrTargetPrice":"946.22","Volume":"1670049","HoldingsValue":null,"HoldingsValueRealtime":null,"YearRange":"663.06 - 816.68","DaysValueChange":null,"DaysValueChangeRealtime":null,"StockExchange":"NMS","DividendYield":null,"PercentChange":"+0.35%"},{"symbol":"MSFT","Ask":"62.97","AverageDailyVolume":"27260000","Bid":"62.53","AskRealtime":null,"BidRealtime":null,"BookValue":"9.04","Change_PercentChange":"+0.44 - +0.71%","Change":"+0.44","Commission":null,"Currency":"USD","ChangeRealtime":null,"AfterHoursChangeRealtime":null,"DividendShare":"1.56","LastTradeDate":"1/20/2017","TradeDate":null,"EarningsShare":"2.09","ErrorIndicationreturnedforsymbolchangedinvalid":null,"EPSEstimateCurrentYear":"2.97","EPSEstimateNextYear":"3.27","EPSEstimateNextQuarter":"0.72","DaysLow":"62.37","DaysHigh":"62.82","YearLow":"48.03","YearHigh":"64.10","HoldingsGainPercent":null,"AnnualizedGain":null,"HoldingsGain":null,"HoldingsGainPercentRealtime":null,"HoldingsGainRealtime":null,"MoreInfo":null,"OrderBookRealtime":null,"MarketCapitalization":"487.83B","MarketCapRealtime":null,"EBITDA":"26.96B","ChangeFromYearLow":"14.71","PercentChangeFromYearLow":"+30.61%","LastTradeRealtimeWithTime":null,"ChangePercentRealtime":null,"ChangeFromYearHigh":"-1.36","PercebtChangeFromYearHigh":"-2.12%","LastTradeWithTime":"4:00pm - <b>62.74</b>","LastTradePriceOnly":"62.74","HighLimit":null,"LowLimit":null,"DaysRange":"62.37 - 62.82","DaysRangeRealtime":null,"FiftydayMovingAverage":"62.40","TwoHundreddayMovingAverage":"58.74","ChangeFromTwoHundreddayMovingAverage":"4.00","PercentChangeFromTwoHundreddayMovingAverage":"+6.81%","ChangeFromFiftydayMovingAverage":"0.34","PercentChangeFromFiftydayMovingAverage":"+0.55%","Name":"Microsoft Corporation","Notes":null,"Open":"62.67","PreviousClose":"62.30","PricePaid":null,"ChangeinPercent":"+0.71%","PriceSales":"5.67","PriceBook":"6.89","ExDividendDate":"11/15/2016","PERatio":"30.05","DividendPayDate":"3/9/2017","PERatioRealtime":null,"PEGRatio":"2.32","PriceEPSEstimateCurrentYear":"21.12","PriceEPSEstimateNextYear":"19.19","Symbol":"MSFT","SharesOwned":null,"ShortRatio":"2.03","LastTradeTime":"4:00pm","TickerTrend":null,"OneyrTargetPrice":"65.91","Volume":"30213730","HoldingsValue":null,"HoldingsValueRealtime":null,"YearRange":"48.03 - 64.10","DaysValueChange":null,"DaysValueChangeRealtime":null,"StockExchange":"NMS","DividendYield":"2.49","PercentChange":"+0.71%"}]}}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
