@@ -9,16 +9,17 @@ int p= 24;
 // Default width-positions on left
 int leftPositions = 10;
 // Default width-positions on right
-int rightPositions = 1140;
+float rightPositions = width+1045;
 
 
 int intDayOfWeek;
 
 void setup() {
-
+  
+  fullScreen();
   Calendar c = Calendar.getInstance();
   intDayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-  size(1440, 900);
+  //size(1440, 900);
   font = createFont("Helvetica", 72);
   textFont(font, 52);
   
@@ -30,12 +31,13 @@ void draw() {
   
   weather();
   currency();
-  stocks();
+  //stocks();
   displayTime();
   days();
   months();
   gasPrice();
   weatherNextThreeDays();
+  sunRiseAndSet();
   
 }
 
@@ -45,7 +47,7 @@ void weather() {
   int weatherstatus = 666; // Needs to be initialized, if this number is displayed then there is something wrong
   String data[] = loadStrings("http://www.accuweather.com/en/is/kopavogur/190389/weather-forecast/190389");
   String myconditions = data[201];
-  println(myconditions);
+  //println(myconditions);
 
   PImage Sunny = loadImage("Sunnyicon.jpg");
   PImage Partlysunny = loadImage("Partlysunnyicon.jpg");
@@ -185,6 +187,8 @@ void weather() {
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void weatherNextThreeDays() { 
   
+//String weatherConditions[] = { "Léttskýjað", "Heiðskírt", "Alskýjað", "Skýjað", "Rigning", "Lítils háttar rigning", "Lítils háttar snjókoma", "Skúrir", "Slydda", "Snjóél" };
+
 JSONObject json = loadJSONObject("http://apis.is/weather/forecasts/is?stations=1");
 JSONArray results = json.getJSONArray("results");
 JSONObject temperatureAtNoon = results.getJSONObject(0); 
@@ -195,33 +199,38 @@ JSONObject temperature1 = forecast.getJSONObject(12);
 String temp1 = temperature1.getString("T");
 String tempTime1 = temperature1.getString("ftime");
 String description1 = temperature1.getString("W");
-println("Time: " + tempTime1);
-println("Temperature: " + temp1);
-println("Description: " + description1);
+//println("Time: " + tempTime1);
+//println("Temperature: " + temp1);
+//println("Description: " + description1);
 
 // Find temperature for noon day after tomorrow
 JSONObject temperature2 = forecast.getJSONObject(36);
 String temp2 = temperature2.getString("T");
 String tempTime2 = temperature2.getString("ftime");
 String description2 = temperature2.getString("W");
-println("Time: " + tempTime2);
-println("Temperature: " + temp2);
-println("Description: " + description2);
+//println("Time: " + tempTime2);
+//println("Temperature: " + temp2);
+//println("Description: " + description2);
 
 // Find temperature for noon day after tomorrow
 JSONObject temperature3 = forecast.getJSONObject(60);
 String temp3 = temperature3.getString("T");
 String tempTime3 = temperature3.getString("ftime");
 String description3 = temperature3.getString("W");
-println("Time: " + tempTime3);
-println("Temperature: " + temp3);
-println("Description: " + description3);
+//println("Time: " + tempTime3);
+//println("Temperature: " + temp3);
+//println("Description: " + description3);
 
 textSize(30);
-text(" " + temp1 + "°", rightPositions+140, 220);
-text(" " + temp2 + "°", rightPositions+140, 260);
-text(temp3 + "°", rightPositions+140, 300);
-  
+text(temp1 + "°", rightPositions+90, 320);
+text(temp2 + "°", rightPositions+90, 360);
+text(temp3 + "°", rightPositions+90, 400);
+
+text("Rigning" , rightPositions, 200);
+text(description1, rightPositions+135, 320);
+text(description2, rightPositions+135, 360);
+text(description3, rightPositions+135, 400);
+
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void currency() {
@@ -244,42 +253,42 @@ JSONObject GVTLocation = results.getJSONObject(17);
 float EUR = EURLocation.getFloat("value");
 float EURChange = EURLocation.getFloat("changeCur");
 if (EURChange > 0) { EURChange2points = ("+" + nf(EURChange, 1, 2) + "%"); }
-else if (EURChange < 0) { EURChange2points = ("-" + EURChange + "%"); }
+else if (EURChange < 0) { EURChange2points = (EURChange + "%"); }
 
 float USD = USDLocation.getFloat("value");
 float USDChange = USDLocation.getFloat("changeCur");
 if (USDChange > 0) { USDChange2points = ("+" + nf(USDChange, 1, 2) + "%"); }
-else if (USDChange < 0) { USDChange2points = ("-" + USDChange + "%"); }
+else if (USDChange < 0) { USDChange2points = (USDChange + "%"); }
 
 float GBP = GBPLocation.getFloat("value");
 float GBPChange = GBPLocation.getFloat("changeCur");
 if (GBPChange > 0) { GBPChange2points = ("+" + nf(GBPChange, 1, 2) + "%"); }
-else if (GBPChange < 0) { GBPChange2points = ("-" + GBPChange + "%"); }
+else if (GBPChange < 0) { GBPChange2points = (GBPChange + "%"); }
 
 float DKK = DKKLocation.getFloat("value");
 float DKKChange = DKKLocation.getFloat("changeCur");
 if (DKKChange > 0) { DKKChange2points = ("+" + nf(DKKChange, 1, 2) + "%"); }
-else if (DKKChange < 0) { DKKChange2points = ("-" + DKKChange + "%"); }
+else if (DKKChange < 0) { DKKChange2points = (DKKChange + "%"); }
 
 float GVT = GVTLocation.getFloat("value");
 float GVTChange = DKKLocation.getFloat("changeCur");
 if (GVTChange > 0) { GVTChange2points = ("+" + nf(GVTChange, 1, 2) + "%"); }
-else if (GVTChange < 0) { GVTChange2points = ("-" + GVTChange + "%"); }
+else if (GVTChange < 0) { GVTChange2points = (GVTChange + "%"); }
 
 
-println("EUR: " + nf(EUR, 3, 2) + "   " + EURChange2points);
-println("USD: " + nf(USD, 3, 2) + "   " + USDChange2points);
-println("GBP: " + nf(GBP, 3, 2) + "   " + GBPChange2points);
-println("DKK:  " + nf(DKK, 2, 2) + "   " + DKKChange2points);
-println("GVT: " + nf(GVT, 3, 2) + "   " + GVTChange2points);
+//println("EUR: " + nf(EUR, 3, 2) + "   " + EURChange2points);
+//println("USD: " + nf(USD, 3, 2) + "   " + USDChange2points);
+//println("GBP: " + nf(GBP, 3, 2) + "   " + GBPChange2points);
+//println("DKK:  " + nf(DKK, 2, 2) + "   " + DKKChange2points);
+//println("GVT: " + nf(GVT, 3, 2) + "   " + GVTChange2points);
 
 
 textSize(p);
-text("GVT:     " + nf(GVT, 2, 2) + "      " + GVTChange2points, rightPositions, 380);
-text("USD:     " + nf(USD, 3, 2) + "      " + USDChange2points, rightPositions, 410);
-text("GBP:     " + nf(GBP, 3, 2) + "      " + GBPChange2points, rightPositions, 440);
-text("EUR:     " + nf(EUR, 3, 2) + "      " + EURChange2points, rightPositions, 470);
-text("DKK:       " + nf(DKK, 2, 2) + "      " + DKKChange2points, rightPositions, 500);
+text("GVT:    " + nf(GVT, 2, 2) + "     " + GVTChange2points, rightPositions, 480);
+text("USD:    " + nf(USD, 3, 2) + "     " + USDChange2points, rightPositions, 510);
+text("GBP:    " + nf(GBP, 3, 2) + "     " + GBPChange2points, rightPositions, 540);
+text("EUR:    " + nf(EUR, 3, 2) + "     " + EURChange2points, rightPositions, 570);
+text("DKK:      " + nf(DKK, 2, 2) + "     " + DKKChange2points, rightPositions, 600);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -318,11 +327,11 @@ float diesel = eachLoctiton.getFloat("diesel");
 float diesel_discount = eachLoctiton.getFloat("diesel_discount");
 String name = eachLoctiton.getString("name");
 
-println(name + ", " + bensin95 + ", " + diesel);
+//println(name + ", " + bensin95 + ", " + diesel);
 
 textSize(p);
-text("Bensín '95    " + bensin95 + " / " + bensin95_discount, rightPositions, 730);
-text("Dísel             " + diesel + " / " + diesel_discount, rightPositions, 760);
+text("Bensín '95    " + bensin95 + " / " + bensin95_discount, rightPositions, 650);
+text("Dísel             " + diesel + " / " + diesel_discount, rightPositions, 680);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -357,6 +366,7 @@ int timeheight = 150;
   }
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void days() {
   
   String today = "Dagur";
@@ -413,9 +423,9 @@ void days() {
   
   textSize(30);
   // Next three days for the weather display
-  text(tomorrow, rightPositions, 220);
-  text(dayAfterTomorrow, rightPositions, 260);
-  text(dayAfterTheDayAfterTomorrow, rightPositions, 300);
+  text(tomorrow, rightPositions, 320);
+  text(dayAfterTomorrow, rightPositions, 360);
+  text(dayAfterTheDayAfterTomorrow, rightPositions, 400);
   
   
   textSize(25);
@@ -448,6 +458,7 @@ void days() {
    } 
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void months() {
   int dateHeight = 280;
   String Month = "wrong month"; // Needs to be initialized, if this month is displayd something is wrong
@@ -467,4 +478,11 @@ void months() {
   
   textSize(40);
   text(day()+". "+ Month + " " + year(), leftPositions, dateHeight);
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void sunRiseAndSet() {
+  textSize(20);
+  text("Sólarupprás   09:23", rightPositions, 230);
+  text("Sólsetur         21:03", rightPositions, 260);
 }
