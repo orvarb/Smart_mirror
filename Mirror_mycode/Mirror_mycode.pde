@@ -9,7 +9,7 @@ int p= 24;
 // Default width-positions on left
 int leftPositions = 10;
 // Default width-positions on right
-float rightPositions = width+1045;
+float rightPositions = width+990;
 
 
 int intDayOfWeek;
@@ -29,22 +29,21 @@ void draw() {
 
   background(0);
   
-  weather();
+  weatherIcon();
   currency();
   //stocks();
   displayTime();
   days();
   months();
   gasPrice();
-  weatherNextThreeDays();
+  weatherJSON();
   sunRiseAndSet();
   
 }
 
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void weather() {
-  int weatherstatus = 666; // Needs to be initialized, if this number is displayed then there is something wrong
+void weatherIcon() {
   String data[] = loadStrings("http://www.accuweather.com/en/is/kopavogur/190389/weather-forecast/190389");
   String myconditions = data[201];
   //println(myconditions);
@@ -76,116 +75,26 @@ void weather() {
   boolean weathercheck13 = myconditions.contains("Light freezing drizzle");
   boolean weathercheck14 = myconditions.contains("Drizzle/rain");
 
+  println(myconditions);
   //TEST FOR CONDITION AND DISPLAY APPROPRIATE ICON
-  if (weathercheck == true) { image(Cloudy, width-170, 25); }
-  if (weathercheck2 == true) { image(Sunny, width-170, 25); }
-  if (weathercheck3 == true) { image(Mostlycloudy, width-180, 25); }
-  if (weathercheck4 == true) { image(Partlycloudy, width-180, 25); }
-  if (weathercheck5 == true) { image(Clear, width-180, 25); }
-  if (weathercheck6 == true) { image(Partlysunny, width-170, 25); }
-  if (weathercheck7 == true) { image(Lightrain, width-170, 25); }
-  if (weathercheck8 == true) { image(Rain, width-170, 25); }
-  if (weathercheck9 == true) { image(Mist, width-170, 25); }
-  if (weathercheck10 == true) { image(Snow, width-170, 25); }
-  if (weathercheck11 == true) { image(Snow, width-170, 25); }
-  if (weathercheck12 == true) { image(Lightsnow, width-170, 25); }
-  if (weathercheck13 == true) { image(Lightsnow, width-170, 25); }
-  if (weathercheck14 == true) { image(Rain, width-170, 25); }
-  
-  //current temp
-  boolean temptestminus10 = myconditions.contains("temp:'-10'");
-  boolean temptestminus9 = myconditions.contains("temp:'-9'");
-  boolean temptestminus8 = myconditions.contains("temp:'-8'");
-  boolean temptestminus7 = myconditions.contains("temp:'-7'");
-  boolean temptestminus6 = myconditions.contains("temp:'-6'");
-  boolean temptestminus5 = myconditions.contains("temp:'-5'");
-  boolean temptestminus4 = myconditions.contains("temp:'-4'");
-  boolean temptestminus3 = myconditions.contains("temp:'-3'");
-  boolean temptestminus2 = myconditions.contains("temp:'-2'");
-  boolean temptestminus1 = myconditions.contains("temp:'-1'");
-  boolean temptest0 = myconditions.contains("temp:'0'");
-  boolean temptest1 = myconditions.contains("temp:'1'");
-  boolean temptest2 = myconditions.contains("temp:'2'");
-  boolean temptest3 = myconditions.contains("temp:'3'");
-  boolean temptest4 = myconditions.contains("temp:'4'");
-  boolean temptest5 = myconditions.contains("temp:'5'");
-  boolean temptest6 = myconditions.contains("temp:'6'");
-  boolean temptest7 = myconditions.contains("temp:'7'");
-  boolean temptest8 = myconditions.contains("temp:'8'");
-  boolean temptest9 = myconditions.contains("temp:'9'");
-  boolean temptest10 = myconditions.contains("temp:'10'");
-  boolean temptest11 = myconditions.contains("temp:'11'");
-  boolean temptest12 = myconditions.contains("temp:'12'");
-  boolean temptest13 = myconditions.contains("temp:'13'");
-  boolean temptest14 = myconditions.contains("temp:'14'");
-  boolean temptest15 = myconditions.contains("temp:'15'");
-  boolean temptest16 = myconditions.contains("temp:'16'");
-  boolean temptest17 = myconditions.contains("temp:'17'");
-  boolean temptest18 = myconditions.contains("temp:'18'");
-  boolean temptest19 = myconditions.contains("temp:'19'");
-  boolean temptest20 = myconditions.contains("temp:'20'");
-  boolean temptest21 = myconditions.contains("temp:'21'");
-  boolean temptest22 = myconditions.contains("temp:'22'");
-  boolean temptest23 = myconditions.contains("temp:'23'");
-  boolean temptest24 = myconditions.contains("temp:'24'");
-  boolean temptest25 = myconditions.contains("temp:'25'");
-  boolean temptest26 = myconditions.contains("temp:'26'");
-  boolean temptest27 = myconditions.contains("temp:'27'");
-  boolean temptest28 = myconditions.contains("temp:'28'");
-  boolean temptest29 = myconditions.contains("temp:'29'");
-  boolean temptest30 = myconditions.contains("temp:'30'");
-  
-  if (temptestminus10) { weatherstatus=-10; }
-  if (temptestminus9) { weatherstatus=-9; }
-  if (temptestminus8) { weatherstatus=-8; }
-  if (temptestminus7) { weatherstatus=-7; }
-  if (temptestminus6) { weatherstatus=-6; }
-  if (temptestminus5) { weatherstatus=-5; }
-  if (temptestminus4) { weatherstatus=-4; }
-  if (temptestminus3) { weatherstatus=-3; }
-  if (temptestminus2) { weatherstatus=-2; }
-  if (temptestminus1) { weatherstatus=-1; }
-  if (temptest0) { weatherstatus=0; }
-  if (temptest1) { weatherstatus=1; }
-  if (temptest2) { weatherstatus=2; }
-  if (temptest3) { weatherstatus=3; }
-  if (temptest4) { weatherstatus=4; }
-  if (temptest5) { weatherstatus=5; }
-  if (temptest6) { weatherstatus=7; }
-  if (temptest7) { weatherstatus=7; }
-  if (temptest8) { weatherstatus=8; }
-  if (temptest9) { weatherstatus=9; }
-  if (temptest10) { weatherstatus=10; }
-  if (temptest11) { weatherstatus=11; }
-  if (temptest12) { weatherstatus=12; }
-  if (temptest13) { weatherstatus=13; }
-  if (temptest14) { weatherstatus=14; }
-  if (temptest15) { weatherstatus=15; }
-  if (temptest16) { weatherstatus=16; }
-  if (temptest17) { weatherstatus=17; }
-  if (temptest18) { weatherstatus=18; }
-  if (temptest19) { weatherstatus=19; }
-  if (temptest20) { weatherstatus=20; }
-  if (temptest21) { weatherstatus=21; }
-  if (temptest22) { weatherstatus=22; }
-  if (temptest23) { weatherstatus=23; }
-  if (temptest24) { weatherstatus=24; }
-  if (temptest25) { weatherstatus=25; }
-  if (temptest26) { weatherstatus=26; }
-  if (temptest27) { weatherstatus=27; }
-  if (temptest28) { weatherstatus=28; }
-  if (temptest29) { weatherstatus=29; }
-  if (temptest30) { weatherstatus=30; }
-  
-  fill(255);
-  
-  // Print current temprature
-  textSize(150);
-  text(weatherstatus+"°", rightPositions, 150);
+  if (weathercheck == true) { image(Cloudy, rightPositions+120, 10); }
+  if (weathercheck2 == true) { image(Sunny, rightPositions+120, 10); }
+  if (weathercheck3 == true) { image(Mostlycloudy, rightPositions+120, 10); }
+  if (weathercheck4 == true) { image(Partlycloudy, rightPositions+120, 10); }
+  if (weathercheck5 == true) { image(Clear, rightPositions+120, 10); }
+  if (weathercheck6 == true) { image(Partlysunny, rightPositions+120, 10); }
+  if (weathercheck7 == true) { image(Lightrain, rightPositions+120, 10); }
+  if (weathercheck8 == true) { image(Rain, rightPositions+120, 10); }
+  if (weathercheck9 == true) { image(Mist, rightPositions+120, 10); }
+  if (weathercheck10 == true) { image(Snow, rightPositions+120, 10); }
+  if (weathercheck11 == true) { image(Snow, rightPositions+120, 10); }
+  if (weathercheck12 == true) { image(Lightsnow, rightPositions+120, 10); }
+  if (weathercheck13 == true) { image(Lightsnow, rightPositions+120, 10); }
+  if (weathercheck14 == true) { image(Rain, rightPositions+120, 10); }
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void weatherNextThreeDays() { 
+void weatherJSON() { 
   
 //String weatherConditions[] = { "Léttskýjað", "Heiðskírt", "Alskýjað", "Skýjað", "Rigning", "Lítils háttar rigning", "Lítils háttar snjókoma", "Skúrir", "Slydda", "Snjóél" };
 
@@ -194,11 +103,19 @@ JSONArray results = json.getJSONArray("results");
 JSONObject temperatureAtNoon = results.getJSONObject(0); 
 JSONArray forecast = temperatureAtNoon.getJSONArray("forecast");
 
+// Find temperature for current time 
+JSONObject temperature = forecast.getJSONObject(3);
+String temp = temperature.getString("T");
+String tempTime = temperature.getString("ftime");
+String description = temperature.getString("W");
+String wind = temperature.getString("F");
+
 // Find temperature for noon next day
 JSONObject temperature1 = forecast.getJSONObject(12);
 String temp1 = temperature1.getString("T");
 String tempTime1 = temperature1.getString("ftime");
 String description1 = temperature1.getString("W");
+String wind1 = temperature1.getString("F");
 //println("Time: " + tempTime1);
 //println("Temperature: " + temp1);
 //println("Description: " + description1);
@@ -208,6 +125,7 @@ JSONObject temperature2 = forecast.getJSONObject(36);
 String temp2 = temperature2.getString("T");
 String tempTime2 = temperature2.getString("ftime");
 String description2 = temperature2.getString("W");
+String wind2 = temperature2.getString("F");
 //println("Time: " + tempTime2);
 //println("Temperature: " + temp2);
 //println("Description: " + description2);
@@ -217,19 +135,24 @@ JSONObject temperature3 = forecast.getJSONObject(60);
 String temp3 = temperature3.getString("T");
 String tempTime3 = temperature3.getString("ftime");
 String description3 = temperature3.getString("W");
+String wind3 = temperature3.getString("F");
 //println("Time: " + tempTime3);
 //println("Temperature: " + temp3);
 //println("Description: " + description3);
 
+textSize(150);
+text(temp+"°", rightPositions, 120);
 textSize(30);
-text(temp1 + "°", rightPositions+90, 320);
-text(temp2 + "°", rightPositions+90, 360);
-text(temp3 + "°", rightPositions+90, 400);
+text(description + "   " + wind + "m/s", rightPositions, 170);
 
-text("Rigning" , rightPositions, 200);
-text(description1, rightPositions+135, 320);
-text(description2, rightPositions+135, 360);
-text(description3, rightPositions+135, 400);
+textSize(20);
+text(temp1 + "°", rightPositions+60, 280);
+text(temp2 + "°", rightPositions+60, 305);
+text(temp3 + "°", rightPositions+60, 330);
+
+text(description1 + "   " + wind1 + "m/s", rightPositions+90, 280);
+text(description2 + "   " + wind2 + "m/s", rightPositions+90, 305);
+text(description3 + "   " + wind3 + "m/s", rightPositions+90, 330);
 
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -253,27 +176,27 @@ JSONObject GVTLocation = results.getJSONObject(17);
 float EUR = EURLocation.getFloat("value");
 float EURChange = EURLocation.getFloat("changeCur");
 if (EURChange > 0) { EURChange2points = ("+" + nf(EURChange, 1, 2) + "%"); }
-else if (EURChange < 0) { EURChange2points = (EURChange + "%"); }
+else if (EURChange < 0) { EURChange2points = (" " + EURChange + "%"); }
 
 float USD = USDLocation.getFloat("value");
 float USDChange = USDLocation.getFloat("changeCur");
 if (USDChange > 0) { USDChange2points = ("+" + nf(USDChange, 1, 2) + "%"); }
-else if (USDChange < 0) { USDChange2points = (USDChange + "%"); }
+else if (USDChange < 0) { USDChange2points = (" " + USDChange + "%"); }
 
 float GBP = GBPLocation.getFloat("value");
 float GBPChange = GBPLocation.getFloat("changeCur");
 if (GBPChange > 0) { GBPChange2points = ("+" + nf(GBPChange, 1, 2) + "%"); }
-else if (GBPChange < 0) { GBPChange2points = (GBPChange + "%"); }
+else if (GBPChange < 0) { GBPChange2points = (" " + GBPChange + "%"); }
 
 float DKK = DKKLocation.getFloat("value");
 float DKKChange = DKKLocation.getFloat("changeCur");
 if (DKKChange > 0) { DKKChange2points = ("+" + nf(DKKChange, 1, 2) + "%"); }
-else if (DKKChange < 0) { DKKChange2points = (DKKChange + "%"); }
+else if (DKKChange < 0) { DKKChange2points = (" " + DKKChange + "%"); }
 
 float GVT = GVTLocation.getFloat("value");
 float GVTChange = DKKLocation.getFloat("changeCur");
 if (GVTChange > 0) { GVTChange2points = ("+" + nf(GVTChange, 1, 2) + "%"); }
-else if (GVTChange < 0) { GVTChange2points = (GVTChange + "%"); }
+else if (GVTChange < 0) { GVTChange2points = (" " + GVTChange + "%"); }
 
 
 //println("EUR: " + nf(EUR, 3, 2) + "   " + EURChange2points);
@@ -283,12 +206,12 @@ else if (GVTChange < 0) { GVTChange2points = (GVTChange + "%"); }
 //println("GVT: " + nf(GVT, 3, 2) + "   " + GVTChange2points);
 
 
-textSize(p);
-text("GVT:    " + nf(GVT, 2, 2) + "     " + GVTChange2points, rightPositions, 480);
-text("USD:    " + nf(USD, 3, 2) + "     " + USDChange2points, rightPositions, 510);
-text("GBP:    " + nf(GBP, 3, 2) + "     " + GBPChange2points, rightPositions, 540);
-text("EUR:    " + nf(EUR, 3, 2) + "     " + EURChange2points, rightPositions, 570);
-text("DKK:      " + nf(DKK, 2, 2) + "     " + DKKChange2points, rightPositions, 600);
+textSize(20);
+text("GVT:    " + nf(GVT, 2, 2) + "     " + GVTChange2points, rightPositions, 400);
+text("USD:    " + nf(USD, 3, 2) + "     " + USDChange2points, rightPositions, 425);
+text("GBP:    " + nf(GBP, 3, 2) + "     " + GBPChange2points, rightPositions, 450);
+text("EUR:    " + nf(EUR, 3, 2) + "     " + EURChange2points, rightPositions, 475);
+text("DKK:      " + nf(DKK, 2, 2) + "     " + DKKChange2points, rightPositions, 500);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -329,9 +252,9 @@ String name = eachLoctiton.getString("name");
 
 //println(name + ", " + bensin95 + ", " + diesel);
 
-textSize(p);
-text("Bensín '95    " + bensin95 + " / " + bensin95_discount, rightPositions, 650);
-text("Dísel             " + diesel + " / " + diesel_discount, rightPositions, 680);
+textSize(20);
+text("Bensín '95    " + bensin95 + " / " + bensin95_discount, rightPositions, 550);
+text("Dísel             " + diesel + " / " + diesel_discount, rightPositions, 575);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -339,7 +262,7 @@ void displayTime() {
   
 textFont(font, 150);
 
-int timeheight = 150;
+int timeheight = 120;
     
   if(hour() <= 12 && hour() > 0 && minute() > 9){
     text(hour()+":"+minute(),leftPositions,timeheight);
@@ -373,7 +296,7 @@ void days() {
   String tomorrow = "Dagur2";
   String dayAfterTomorrow = "Dagur3";
   String dayAfterTheDayAfterTomorrow = "Dagur4";  
-  int dayheight = 230;
+  int dayheight = 200;
   
   if (intDayOfWeek == 1) {
     today = "Sunnudagur";
@@ -421,11 +344,11 @@ void days() {
   textSize(60);
   text(today, leftPositions, dayheight);
   
-  textSize(30);
+  textSize(20);
   // Next three days for the weather display
-  text(tomorrow, rightPositions, 320);
-  text(dayAfterTomorrow, rightPositions, 360);
-  text(dayAfterTheDayAfterTomorrow, rightPositions, 400);
+  text(tomorrow, rightPositions, 280);
+  text(dayAfterTomorrow, rightPositions, 305);
+  text(dayAfterTheDayAfterTomorrow, rightPositions, 330);
   
   
   textSize(25);
@@ -460,7 +383,7 @@ void days() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void months() {
-  int dateHeight = 280;
+  int dateHeight = 250;
   String Month = "wrong month"; // Needs to be initialized, if this month is displayd something is wrong
   
   if (month() == 1) { Month = "janúar"; }
@@ -482,7 +405,20 @@ void months() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void sunRiseAndSet() {
-  textSize(20);
-  text("Sólarupprás   09:23", rightPositions, 230);
-  text("Sólsetur         21:03", rightPositions, 260);
+String url = "http://api.sunrise-sunset.org/json?lat=64.123658&lng=-21.928053&date=today";
+
+JSONObject json = loadJSONObject(url);
+JSONObject results = json.getJSONObject("results");
+String sunrise = results.getString("sunrise");
+String sunset = results.getString("sunset");
+String dayLength = results.getString("day_length");
+
+//println(sunrise);
+//println(sunset);
+//println(dayLength);
+
+textSize(20);
+text("Sólarupprás      " + sunrise, rightPositions, 200);
+text("Sólsetur            " + sunset, rightPositions, 225);
+//text("Lengd dags       " + dayLength, rightPositions, 250); 
 }
