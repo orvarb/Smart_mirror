@@ -1,6 +1,7 @@
 # Smart mirror
 Code for my smart mirror and icons for the weather display
-![alt text](https://github.com/orvarb/Smart_mirror/blob/master/Process/Almost_final.png)
+The picture below is a screen-shot of the final version
+![alt text](https://github.com/orvarb/Smart_mirror/blob/master/Process/Final_version.png)
 
 ## The mirror displays: 
 * The current time and date
